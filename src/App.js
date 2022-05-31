@@ -1,12 +1,12 @@
 // import logo from "./logo.svg";
 import "./App.css";
-// import About from "./components/About";
+import About from "./components/About";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import React, { useState } from "react";
 import Alert from "./components/Alert";
 
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -47,7 +47,7 @@ function App() {
     }, 1000);
   };
   return (
-    <>
+    <BrowserRouter>
       <Navbar
         title="TextUtils"
         mode={mode}
@@ -56,13 +56,8 @@ function App() {
       />
       <Alert alert={alert} />
       <div className="container my-3">
-        <TextForm
-          heading="Enter Text Below"
-          mode={mode}
-          showAlert={showAlert}
-        />
-        {/* <Routes> */}
-          {/* <Route
+        <Routes>
+          <Route
             path="/"
             element={
               <TextForm
@@ -71,8 +66,8 @@ function App() {
                 showAlert={showAlert}
               />
             }
-          /> */}
-          {/* <Route
+          />
+          <Route
             path="/home"
             element={
               <TextForm
@@ -81,11 +76,11 @@ function App() {
                 showAlert={showAlert}
               />
             }
-          /> */}
-          {/* <Route path="/about" element={<About />} /> */}
-        {/* </Routes> */}
+          />
+          <Route path="/about" element={<About />} />
+        </Routes>
       </div>
-    </>
+    </BrowserRouter>
   );
 }
 

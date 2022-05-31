@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
   return (
@@ -7,12 +7,9 @@ export default function Navbar(props) {
       className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
     >
       <div className="container-fluid">
-        {/* <Link className="navbar-brand" to={"/"}>
+        <Link className="navbar-brand" to={"/"}>
           {props.title}
-        </Link> */}
-        <a className="navbar-brand" href="#">
-          {props.title}
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -27,24 +24,19 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              {/* <Link
+              <Link
                 className="nav-link active"
                 aria-current="page"
                 to={"/home"}
-              > */}
-              <a
-                className="nav-link active"
-                aria-current="page"
-                href="#"
               >
                 Home
-              </a>
+              </Link>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <Link className="nav-link" to={"/about"}>
                 About
               </Link>
-            </li> */}
+            </li>
           </ul>
           {/* <div className="d-flex mx-3">
             <div
