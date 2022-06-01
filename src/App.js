@@ -61,7 +61,7 @@ function App() {
             path="/"
             element={
               <TextForm
-                heading="Enter Text Below"
+                heading="Try TextUtils - Word counter, Character counter, Remove extra spaces etc."
                 mode={mode}
                 showAlert={showAlert}
               />
@@ -77,7 +77,7 @@ function App() {
               />
             }
           />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<About mode={mode} />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -20,21 +20,18 @@ export default function TextForm(props) {
   };
 
   const occuronchange = (event) => {
-    console.log("onChange is Occur!!!");
     setText(event.target.value);
   };
 
   const handleCopy = () => {
-    var text = document.getElementById("myBox");
-    text.select();
-    navigator.clipboard.writeText(text.value);
+    navigator.clipboard.writeText(text);
     props.showAlert("Copied to Clipboard !", "success");
   };
 
   const handleExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
-    props.showAlert("Extraspaces Removed !", "success");
+    props.showAlert("Extraspaces  my-1Removed !", "success");
   };
 
   const [text, setText] = useState("");
@@ -44,7 +41,7 @@ export default function TextForm(props) {
         className="container"
         style={{ color: props.mode === "dark" ? "white" : "black" }}
       >
-        <h2>{props.heading}</h2>
+        <h2 className="mb-3">{props.heading}</h2>
         <div className="mb-3">
           <textarea
             className="form-control"
@@ -52,25 +49,48 @@ export default function TextForm(props) {
             value={text}
             onChange={occuronchange}
             style={{
-              backgroundColor: props.mode === "dark" ? "grey" : "white",
+              backgroundColor:
+                props.mode === "dark"
+                  ? "#678ca9 disabled={text.length === 0}"
+                  : "white",
               color: props.mode === "dark" ? "white" : "black",
             }}
             rows="8"
           ></textarea>
         </div>
-        <button className="btn btn-primary" onClick={uppercase}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={uppercase}
+        >
           Convert To Uppercase
         </button>
-        <button className="btn btn-primary mx-2" onClick={lowercase}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={lowercase}
+        >
           Convert To Lowercase
         </button>
-        <button className="btn btn-primary mx-2" onClick={clear}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={clear}
+        >
           Clear Text
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleCopy}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleCopy}
+        >
           Copy Text
         </button>
-        <button className="btn btn-primary mx-auto" onClick={handleExtraSpaces}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleExtraSpaces}
+        >
           Remove Extra Spaces
         </button>
       </div>
@@ -81,20 +101,15 @@ export default function TextForm(props) {
         <h2>About Your Text</h2>
         <p>
           {
-            text
-              .replace(/\n/g, " ")
-              .split(" ")
-              .filter((value) => value !== "").length
+            text.split(/\s+/).filter((value) => {
+              return value.length !== 0;
+            }).length
           }{" "}
           Words And {text.trim().length} Characters
         </p>
         <p>{text.trim().length * 0.008} Minutes To Read</p>
         <h2>Preview</h2>
-        <p>
-          {text.length > 0
-            ? text
-            : "Enter something in the textbox above to preview"}
-        </p>
+        <p>{text.length > 0 ? text : "Nothing to preview"}</p>
       </div>
     </>
   );
